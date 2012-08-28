@@ -1,0 +1,407 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Karsten Wolfert</Author>
+  <LastAuthor>Karsten Wolfert</LastAuthor>
+  <Created>2012-08-28T09:05:48Z</Created>
+  <LastSaved>2012-08-28T09:57:55Z</LastSaved>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <SupBook>
+   <Path> </Path>
+   <SheetName> </SheetName>
+  </SupBook>
+  <SupBook>
+   <Library>EUROTOOL.XLAM</Library>
+   <SheetName>1028</SheetName>
+   <SheetName>1030</SheetName>
+   <SheetName>1031</SheetName>
+   <SheetName>1032</SheetName>
+   <SheetName>1033</SheetName>
+   <SheetName>1035</SheetName>
+   <SheetName>1036</SheetName>
+   <SheetName>1040</SheetName>
+   <SheetName>1041</SheetName>
+   <SheetName>1042</SheetName>
+   <SheetName>1043</SheetName>
+   <SheetName>1053</SheetName>
+   <SheetName>1055</SheetName>
+   <SheetName>1060</SheetName>
+   <SheetName>1069</SheetName>
+   <SheetName>1082</SheetName>
+   <SheetName>2052</SheetName>
+   <SheetName>2070</SheetName>
+   <SheetName>3082</SheetName>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>0</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>1</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>2</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>3</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>4</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>5</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>6</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>7</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>8</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>9</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>10</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>11</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>12</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>13</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>14</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>15</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>16</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>17</SheetIndex>
+   </Xct>
+   <Xct>
+    <Count>0</Count>
+    <SheetIndex>18</SheetIndex>
+   </Xct>
+  </SupBook>
+  <WindowHeight>12585</WindowHeight>
+  <WindowWidth>28515</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>90</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Vertical="Bottom" ss:Rotate="90" ss:ShrinkToFit="1"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+  </Style>
+  <Style ss:ID="s89">
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s90">
+   <Alignment ss:Vertical="Bottom" ss:Rotate="90"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s92">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Interior ss:Color="#EEECE1" ss:Pattern="Solid"/>
+  </Style>
+  <Style ss:ID="s94">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+  </Style>
+  <Style ss:ID="s236">
+   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Font ss:FontName="Candara" x:Family="Swiss" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <Interior ss:Color="#EEECE1" ss:Pattern="Solid"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s237">
+   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Font ss:FontName="Candara" x:Family="Swiss" ss:Size="11" ss:Color="#000000"
+    ss:Bold="1"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s238">
+   <Alignment ss:Vertical="Bottom" ss:ShrinkToFit="1"/>
+   <Font ss:FontName="Candara" x:Family="Swiss" ss:Color="#000000" ss:Bold="1"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Tabelle1">
+  <Table ss:ExpandedColumnCount="12" ss:ExpandedRowCount="12" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
+   <Column ss:StyleID="s89" ss:Width="84.75"/>
+   <Column ss:Width="68.25"/>
+   <Column ss:StyleID="s64" ss:Width="19.5" ss:Span="9"/>
+   <Row ss:Height="84.75">
+    <Cell ss:Index="2" ss:StyleID="s94"><Data ss:Type="String">REQ_SET_X</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">/Projekt/Abc</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">/Projekt/Abc</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">/Projekt/Abc/Efg</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">/Projekt/Abc/Efg</Data></Cell>
+    <Cell ss:StyleID="s90"><Data ss:Type="String">/Projekt/Abc/Efg</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+   </Row>
+   <Row ss:Height="42.75">
+    <Cell><Data ss:Type="String">REQ_SET_Y</Data></Cell>
+    <Cell ss:StyleID="s92"><Data ss:Type="String">Requ-Objects</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_001</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_002</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_003</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_004</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_005</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_006</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_007</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_008</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_009</Data></Cell>
+    <Cell ss:StyleID="s63"><Data ss:Type="String">Obj_010</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Abc</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_001</Data></Cell>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Abc</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_002</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row ss:Height="15.75">
+    <Cell><Data ss:Type="String">/Projekt/Abc</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_003</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s238"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">&lt;-</Font><Sup><Font
+         html:Color="#000000">|</Font></Sup></B></ss:Data></Cell>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s238"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">&lt;-</Font><Sup><Font
+         html:Color="#000000">|</Font></Sup></B></ss:Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row ss:Height="15.75">
+    <Cell><Data ss:Type="String">/Projekt/Abc/Efg</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_004</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s238"><ss:Data ss:Type="String"
+      xmlns="http://www.w3.org/TR/REC-html40"><B><Font html:Color="#000000">&lt;-</Font><Sup><Font
+         html:Color="#000000">|</Font></Sup></B></ss:Data></Cell>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Abc/Efg</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_005</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_006</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_007</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_008</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_009</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+    <Cell ss:StyleID="s237"/>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">/Projekt/Bcd</Data></Cell>
+    <Cell><Data ss:Type="String">Obj_010</Data></Cell>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s237"/>
+    <Cell ss:StyleID="s236"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.78740157499999996" x:Left="0.7" x:Right="0.7"
+     x:Top="0.78740157499999996"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <VerticalResolution>0</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <RangeSelection>R2:R12</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Tabelle2">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.78740157499999996" x:Left="0.7" x:Right="0.7"
+     x:Top="0.78740157499999996"/>
+   </PageSetup>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="Tabelle3">
+  <Table ss:ExpandedColumnCount="1" ss:ExpandedRowCount="1" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.78740157499999996" x:Left="0.7" x:Right="0.7"
+     x:Top="0.78740157499999996"/>
+   </PageSetup>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
