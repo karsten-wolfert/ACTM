@@ -1,0 +1,9 @@
+list of dependency records in pseudo code
+
+get all root requirement sets
+foreach requirement set in root requirement set list {
+   get all requirements
+   foreach requirement in requirements list {
+      write dependency record
+   }
+}
