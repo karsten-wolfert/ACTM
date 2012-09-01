@@ -1,4 +1,4 @@
-###################################################################################################
+pathpath###################################################################################################
 ##  Reporttemplate zur Erstellung einer Abhängigkeitsmatrix                                      ##
 ##                                                                                               ##
 ##  Autor: Karsten Wolfert (Ingenieurbüro Wolfert)                                               ##
@@ -170,6 +170,38 @@
 #end ## macro writeRequirementRecord ( $requirementlist )
     
     
+#macro( writeDependencyRecord $srcRequirement $pathNameOfSrcRequirement)
+    #set( $listOfDestinationRequirements = $srcRequirement.getReferredRequirements() )
+    #foreach ( $destinationRequirement in $listOfDestinationRequirements )
+        #set ( $line = $line + 1 ) 
+       <Row>
+        <Cell><Data ss:Type="String">$pathNameOfSrcRequirement</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell ss:StyleID="s80" ss:HRef="#'Req Objects'!B2"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$srcRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$srcRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">G &#45;-&gt;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$destinationRequirement.getParentRequirementSet().getName()</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$destinationRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$destinationRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$destinationRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+       </Row>
+    #end
+#end
+
+#macro( traverse $requirementSet $pathName )
+    #if( $requirementSet.hasRequirementChildren() )
+        #foreach( $requirement in $requirementSet.getRequirementChildren() )
+            #writeDependencyRecord( $requirement "$pathName/$requirementSet.Name" ) 
+        #end
+    #end
+    #if( $requirementSet.hasRequirementSetChildren() )
+        #foreach( $subSet in $requirementSet.getRequirementSetChildren() )
+            #traverse( $subSet "$pathName/$requirementSet.Name" )
+        #end
+    #end
+#end ## macro traverse
+
+
 ##...das eigentliche XML-Dokument
 #macro( main )
 <?xml version="1.0"?>
@@ -242,7 +274,7 @@
         <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TITLE</Data></Cell>
         <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TEXT</Data></Cell>
     </Row>
-   <!--writeRequirementRecord()-->
+   <!-- writeRequirementRecord -->
     #writeRequirementRecord( $sortedListOfRequirements )
     </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -299,8 +331,10 @@
     <Cell><Data ss:Type="String">DESTINATION_REQ_OBJECT_TITLE</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
    </Row>
-   <!--writeDependencyRecord()-->
-    ##writeDependencyRecord()
+   <!-- traverse() and writeDependencyRecord() -->
+    #foreach( $reqSet in $listOfRootRequirementSets )
+        #traverse( $reqSet, "")
+    #end
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
