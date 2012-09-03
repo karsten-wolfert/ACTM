@@ -1,11 +1,11 @@
-pathpath###################################################################################################
+###################################################################################################
 ##  Reporttemplate zur Erstellung einer Abhängigkeitsmatrix                                      ##
 ##                                                                                               ##
 ##  Autor: Karsten Wolfert (Ingenieurbüro Wolfert)                                               ##
 ##  2012-08-28  KW  Initiale Erstellung                                                          ##
 ##                                                                                               ##
 ##                                                                                               ##
-##  SVN ID "$Id: Abhängigkeitsmatrix.rpttpl 398 2012-07-24 21:10:33Z kw $"                       ##
+##  Abhängigkeitsmatrix.rpttpl                                                                   ##
 ##                                                                                               ##
 ###################################################################################################
 
@@ -17,10 +17,10 @@ pathpath########################################################################
 #set ( $numberOfRequirements = ${arrayHelper.getArraySize( $sortedListOfRequirements )} )
 #set ( $numberOfLines = ${numberOfRequirements} + 1 )
 #set ( $listOfRootRequirementSets = $requirementDataProvider.getAllRootRequirementSets() )
-
-## Contains the all requirement objects that shall be written to the excel sheet
-#set( $documentObjectUIDs = [] )
-
+## global line number variable
+#set ( $line = 1 )
+## Contains all requirement objects that shall be written to the excel sheet
+#set ( $reqMap = {} )
 
 ##set ( $LHWurzelAnfSatz = ${requirementDataProvider.findRequirementSet($cfgMap.WurzelAnfSatz)} )
 #set ( $LHWurzelAnfSatz = ${requirementDataProvider.findRequirementSet("Projekt")} )
@@ -148,7 +148,7 @@ pathpath########################################################################
 #end
     
 
-#macro( writeRequirementRecord $requirementlist )
+#macro( writeRequirementRecord2 $requirementlist )
    #set ( $line = 1 ) 
    #foreach ( $req in $requirementlist )
        #set ( $line = $line + 1 ) 
@@ -170,36 +170,65 @@ pathpath########################################################################
 #end ## macro writeRequirementRecord ( $requirementlist )
     
     
-#macro( writeDependencyRecord $srcRequirement $pathNameOfSrcRequirement)
+#macro( traverse1 $requirementSet $pathName )
+    #if( $requirementSet.hasRequirementChildren() )
+        #foreach( $requirement in $requirementSet.getRequirementChildren() )
+            #writeRequirementRecord( $requirement "$pathName/$requirementSet.Name" ) 
+        #end
+    #end
+    #if( $requirementSet.hasRequirementSetChildren() )
+        #foreach( $subSet in $requirementSet.getRequirementSetChildren() )
+            #traverse1( $subSet "$pathName/$requirementSet.Name" )
+        #end
+    #end
+#end ## macro traverse1
+
+
+#macro( writeRequirementRecord $req $pathNameOfRequirement )
+    #set ( $line = $line + 1 )
+    #set ( $_dummy = $reqMap.put( $req.ID, [$line, $pathNameOfRequirement] ) )
+<Row ss:AutoFitHeight="1" ss:Height="15">
+<Cell ss:StyleID="s86"><Data ss:Type="Number">$line</Data></Cell>
+<Cell><Data ss:Type="String">$pathNameOfRequirement</Data></Cell>
+<Cell><Data ss:Type="String">$req.ID</Data></Cell>
+<Cell><Data ss:Type="String">$req.getPropertyAsString("custom.Objektkategorie")</Data></Cell>
+<Cell><Data ss:Type="String">$req.Name</Data></Cell>
+<Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${req.Description})${text}#end</Font></ss:Data></Cell>
+</Row>
+#end ## macro writeRequirementRecord ( $requirement $pathNameOfRequirement )
+    
+    
+
+#macro( traverse2 $requirementSet $pathName )
+    #if( $requirementSet.hasRequirementChildren() )
+        #foreach( $requirement in $requirementSet.getRequirementChildren() )
+            #writeDependencyRecord( $requirement ) 
+        #end
+    #end
+    #if( $requirementSet.hasRequirementSetChildren() )
+        #foreach( $subSet in $requirementSet.getRequirementSetChildren() )
+            #traverse2( $subSet "$pathName/$requirementSet.Name" )
+        #end
+    #end
+#end ## macro traverse2
+
+#macro( writeDependencyRecord $srcRequirement )
     #set( $listOfDestinationRequirements = $srcRequirement.getReferredRequirements() )
     #foreach ( $destinationRequirement in $listOfDestinationRequirements )
-        #set ( $line = $line + 1 ) 
+        #set ( $line = $line + 1 )
        <Row>
-        <Cell><Data ss:Type="String">$pathNameOfSrcRequirement</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell ss:StyleID="s80" ss:HRef="#'Req Objects'!B2"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$reqMap.get($srcRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($srcRequirement.ID).get(0)"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
         <Cell><Data ss:Type="String">$srcRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
         <Cell><Data ss:Type="String">$srcRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">G &#45;-&gt;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$destinationRequirement.getParentRequirementSet().getName()</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$destinationRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">&#45;-&gt;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell><Data ss:Type="String">$reqMap.get($destinationRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($destinationRequirement.ID).get(0)"><Data ss:Type="String">$destinationRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
         <Cell><Data ss:Type="String">$destinationRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
         <Cell><Data ss:Type="String">$destinationRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
        </Row>
     #end
 #end
-
-#macro( traverse $requirementSet $pathName )
-    #if( $requirementSet.hasRequirementChildren() )
-        #foreach( $requirement in $requirementSet.getRequirementChildren() )
-            #writeDependencyRecord( $requirement "$pathName/$requirementSet.Name" ) 
-        #end
-    #end
-    #if( $requirementSet.hasRequirementSetChildren() )
-        #foreach( $subSet in $requirementSet.getRequirementSetChildren() )
-            #traverse( $subSet "$pathName/$requirementSet.Name" )
-        #end
-    #end
-#end ## macro traverse
 
 
 ##...das eigentliche XML-Dokument
@@ -257,9 +286,9 @@ pathpath########################################################################
    <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
   </Style>
  </Styles>
- <Worksheet ss:Name="Req Objects">
+ <Worksheet ss:Name="Requirements">
     ##Tabelle
-  <Table  ss:ExpandedColumnCount="6" ss:ExpandedRowCount="${numberOfLines}" x:FullColumns="1" x:FullRows="1" ss:StyleID="s21" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
+  <Table  ss:ExpandedColumnCount="6" x:FullColumns="1" x:FullRows="1" ss:StyleID="s21" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
    <Column ss:StyleID="s21" ss:Width="24"/>
    <Column ss:StyleID="s21" ss:Width="87.75"/>
    <Column ss:StyleID="s21" ss:Width="121.5"/>
@@ -274,8 +303,10 @@ pathpath########################################################################
         <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TITLE</Data></Cell>
         <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TEXT</Data></Cell>
     </Row>
-   <!-- writeRequirementRecord -->
-    #writeRequirementRecord( $sortedListOfRequirements )
+   <!-- traverse1() and writeRequirementRecord() -->
+    #foreach( $reqSet in $listOfRootRequirementSets )
+        #traverse1( $reqSet, "")
+    #end
     </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <PageSetup>
@@ -296,9 +327,9 @@ pathpath########################################################################
    <ProtectScenarios>False</ProtectScenarios>
   </WorksheetOptions>
  </Worksheet>
- <Worksheet ss:Name="Data Records">
+ <Worksheet ss:Name="Dependencies">
   <Names>
-   <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="='Data Records'!R1C1:R15C9"
+   <NamedRange ss:Name="_FilterDatabase" ss:RefersTo="='Dependencies'!R1C1:R15C9"
     ss:Hidden="1"/>
   </Names>
   <Table x:FullRows="1" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="15">
@@ -331,9 +362,9 @@ pathpath########################################################################
     <Cell><Data ss:Type="String">DESTINATION_REQ_OBJECT_TITLE</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
    </Row>
-   <!-- traverse() and writeDependencyRecord() -->
+   <!-- traverse2() and writeDependencyRecord() -->
     #foreach( $reqSet in $listOfRootRequirementSets )
-        #traverse( $reqSet, "")
+        #traverse2( $reqSet, "")
     #end
   </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
@@ -358,7 +389,6 @@ pathpath########################################################################
   </AutoFilter>
  </Worksheet>
 </Workbook>
-#end ## endmacro
+#end ## end macro main()
 
 #main()
-
