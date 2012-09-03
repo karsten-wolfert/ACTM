@@ -247,11 +247,15 @@
   <LastSaved>2012-08-28T13:21:07Z</LastSaved>
   <Version>12.00</Version>
  </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
  <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
   <WindowHeight>12585</WindowHeight>
   <WindowWidth>28515</WindowWidth>
   <WindowTopX>120</WindowTopX>
   <WindowTopY>90</WindowTopY>
+  <TabRatio>306</TabRatio>
   <ProtectStructure>False</ProtectStructure>
   <ProtectWindows>False</ProtectWindows>
  </ExcelWorkbook>
