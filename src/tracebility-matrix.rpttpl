@@ -67,19 +67,34 @@
 
 #macro( writeDependencyRecord $srcRequirement )
     #set( $listOfDestinationRequirements = $srcRequirement.getReferredRequirements() )
-    #foreach ( $destinationRequirement in $listOfDestinationRequirements )
+    #if ( $listOfDestinationRequirements.isEmpty() )
         #set ( $line = $line + 1 )
-       <Row>
-        <Cell><Data ss:Type="String">$reqMap.get($srcRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($srcRequirement.ID).get(0)"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$srcRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$srcRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">&#45;-&gt;</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$reqMap.get($destinationRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($destinationRequirement.ID).get(0)"><Data ss:Type="String">$destinationRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$destinationRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-        <Cell><Data ss:Type="String">$destinationRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
-       </Row>
+        <Row>
+            <Cell><Data ss:Type="String">$reqMap.get($srcRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($srcRequirement.ID).get(0)"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell><Data ss:Type="String">$srcRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell><Data ss:Type="String">$srcRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell ss:StyleID="s86"><Data ss:Type="Number">0</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell><Data ss:Type="String"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell ss:StyleID="s80"><Data ss:Type="String"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell><Data ss:Type="String"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            <Cell><Data ss:Type="String"></Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+        </Row>
+    #else
+        #foreach ( $destinationRequirement in $listOfDestinationRequirements )
+            #set ( $line = $line + 1 )
+            <Row>
+                <Cell><Data ss:Type="String">$reqMap.get($srcRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($srcRequirement.ID).get(0)"><Data ss:Type="String">$srcRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell><Data ss:Type="String">$srcRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell><Data ss:Type="String">$srcRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell ss:StyleID="s86"><Data ss:Type="Number">1</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell><Data ss:Type="String">$reqMap.get($destinationRequirement.ID).get(1)</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell ss:StyleID="s80" ss:HRef="#'Requirements'!C$reqMap.get($destinationRequirement.ID).get(0)"><Data ss:Type="String">$destinationRequirement.ID</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell><Data ss:Type="String">$destinationRequirement.getPropertyAsString("custom.Objektkategorie")</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+                <Cell><Data ss:Type="String">$destinationRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
+            </Row>
+        #end
     #end
 #end ## end of macro writeDependencyRecord ( $srcRequirement )
 
