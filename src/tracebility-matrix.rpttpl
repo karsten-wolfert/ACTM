@@ -204,7 +204,7 @@
       ss:Name="_FilterDatabase"/></Cell>
     <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_ID</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
-    <Cell><Data ss:Type="String">DESTINATION_REQ_OBJECT_TYPE</Data><NamedCell
+    <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TYPE</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
     <Cell><Data ss:Type="String">SOURCE_REQ_OBJECT_TITLE</Data><NamedCell
       ss:Name="_FilterDatabase"/></Cell>
