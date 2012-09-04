@@ -22,153 +22,6 @@
 ## Contains all requirement objects that shall be written to the excel sheet
 #set ( $reqMap = {} )
 
-##set ( $LHWurzelAnfSatz = ${requirementDataProvider.findRequirementSet($cfgMap.WurzelAnfSatz)} )
-#set ( $LHWurzelAnfSatz = ${requirementDataProvider.findRequirementSet("Projekt")} )
-#set ( $Zeilenzaehler = 0 )
-#set ( $ColWidth = 0 )
-#set ( $CurrentColWidth = 0 )
-#set ( $SpaltenbreiteText = 200 )
-#set ( $SpaltenbreiteUmsetzung = 120 )
-#set ( $SpaltenbreiteBegruendung = 400 )
-
-## Macro zum Berechnen der Spaltenbreite für die Spalte A
-#macro(SpaltenbreiteErmitteln $AnfSatz)  ##startMacro
-    #if( $AnfSatz.Name.startsWith("[") && $AnfSatz.Name.endsWith("]") )
-        ## do nothing
-    #elseif( $AnfSatz.getName().startsWith("--&gt;") )        
-        #set( $AnfSatzNameLaenge = $AnfSatz.Name.length() )
-        #set( $AnfSatzName = "" )
-        #set( $AnfSatzName = $AnfSatz.Name.substring(6, $AnfSatzNameLaenge) )
-        #set( $AnfSatz2 = "" )
-        #set( $AnfSatz2 = ${requirementDataProvider.findRequirementSet($AnfSatzName)} )
-        #if( $AnfSatz2 != "" )
-            #SpaltenbreiteErmitteln( $AnfSatz2 )
-        #end
-    #else
-        #foreach ( $Anf in $AnfSatz.getRequirements() )
-            #set ( $id=$Anf.Id)
-            #set ( $title=$Anf.Title)
-            #set ( $CurrentColWidth=${id.length()} + ${title.length()})
-            #if ( $CurrentColWidth > $ColWidth)
-                #set ( $ColWidth = $CurrentColWidth)
-            #end ##endif
-        #end ##endforeach
-        #foreach ( $subSet in ${AnfSatz.getRequirementSetChildren()} ) ##rekursiv alle Anforderungen der Subsets auslesen
-            #SpaltenbreiteErmitteln ( $subSet )
-        #end ##endforeach
-    #end
-#end ##endMacro
-## Spaltenbreite berechnen
-#if( $LHWurzelAnfSatz != "" )
-    #SpaltenbreiteErmitteln( $LHWurzelAnfSatz )
-#end
-## Macro, welches die einzelnen Anforderungssätze und deren Anforderungen ausgibt
-## verarbeitet jetz auch Platzhalter
-#macro( writeAnfSatz $anfSatz, $level )
-    #if( $anfSatz.Name.startsWith("[") && $anfSatz.Name.endsWith("]") )
-        ## do nothing
-    #elseif( $anfSatz.getName().startsWith("--&gt;") )    
-        #set( $reqSetName = $anfSatz.getName() )
-        #set( $requirementSet = "" )
-        #set( $endIndex = $reqSetName.length() )
-        #set( $requirementSetName = $reqSetName.substring(6, $endIndex ) )
-        #set( $requirementSet = $requirementDataProvider.findRequirementSet($requirementSetName) )
-        #if( $requirementSet != "" )
-            #writeAnfSatz($requirementSet, $level )
-        #else
-            #set ( $AnfSatzStyle = "FehlerAnfSatz" )
-            #set ( $Zeilenzaehler = $Zeilenzaehler + 1 )
-            <Row>
-                <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String">Fehler: Unter $anfSatz.Name keinen Anforderungssatz gefunden.</Data></Cell>
-                <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String"></Data></Cell>
-                <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String"></Data></Cell>
-                <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String"></Data></Cell>
-            </Row>
-        #end
-    #else
-        #if( $level == 0 )
-            #set ( $AnfSatzStyle = "WurzelAnfSatz")
-            #set ( $Zeilenhoehe = "22" )
-        #elseif( $level == 1 )
-            #set ( $AnfSatzStyle = "HauptAnfSatz" )
-            #set ( $Zeilenhoehe = "19" )
-        #else
-            #set ( $AnfSatzStyle = "UnterAnfSatz" )
-            #set ( $Zeilenhoehe = "15.75" )
-        #end
-        #set ( $Zeilenzaehler = $Zeilenzaehler + 1 )
-        <Row ss:AutoFitHeight="0" ss:Height="$Zeilenhoehe">
-            <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String">${anfSatz.Name} </Data></Cell>
-            <Cell ss:StyleID="${AnfSatzStyle}Beschreibung">
-                <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${anfSatz.Description})${text}#end</Font></ss:Data>
-            </Cell>
-            <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String"></Data></Cell>
-            <Cell ss:StyleID="$AnfSatzStyle"><Data ss:Type="String"></Data></Cell>
-        </Row>
-        #foreach ( $Anf in $anfSatz.getRequirements() )
-            #set( $Abnahmekriterium = [] )
-            #set ($Objektkategorie=$Anf.getPropertyAsString("custom.Objektkategorie"))
-            #if ($Objektkategorie.equals("Anforderung")) ##Anforderung ausgeben
-                #set ( $Zeilenzaehler = $Zeilenzaehler + 1 ) ##für jede Anf Zeilenzähler + 1
-                #if( $Anf.hasPropertyValue( "custom.Abnahmekriterium" ) ) )
-                    #set( $Abnahmekriterium = $Anf.getPropertyAsStringArray( "custom.Abnahmekriterium" ) )
-                #end
-                <Row ss:AutoFitHeight="0" ss:Height="15.75">
-                    <Cell ss:StyleID="Anforderung"><Data ss:Type="String">    $Anf.Id $Anf.Title </Data>
-                    </Cell>
-                    <Cell ss:StyleID="Anforderungtext">
-                        <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${Anf.Description})${text}#end</Font>#if( $arrayHelper.getArraySize( $Abnahmekriterium ) > 0 )<B><Font>&#10;&#10;Abnahmekriterium:&#10;</Font></B><Font>#foreach ( $Zeile in $Abnahmekriterium )${Zeile}#end</Font>#end</ss:Data>
-                    </Cell>
-                    <Cell ss:StyleID="Mitte_Mitte"><Data ss:Type="String"></Data></Cell>
-                    <Cell ss:StyleID="Anforderungtext"><Data ss:Type="String"></Data></Cell>
-                </Row>
-            #else
-                ## wenn keine Anforderung, dann nichts ausgeben
-            #end
-        #end ##endforeach $Anf
-        #set($level = $level + 1)
-        #foreach( $subAnfSatz in $anfSatz.getRequirementSetChildren() )
-            #writeAnfSatz( $subAnfSatz, $level )
-        #end
-        #set($level = $level - 1)
-    #end
-#end
-
-#macro( getRequirementObjectForCfgMapKey $key, $req)
-    #foreach ( $requirement in $requirementDataProvider.getAllRequirements() )
-        #if ( $key.equals($requirement.ID) )
-         #set( $req = $requirement )
-        #end
-    #end
-#end
-
-#macro( writeTextFromCfgMap $cfgMapKey )
-    #getRequirementObjectForCfgMapKey( $cfgMapKey, $requirement )
-    #foreach($line in $requirement.getDescription())${line}#end
-#end
-    
-
-#macro( writeRequirementRecord2 $requirementlist )
-   #set ( $line = 1 ) 
-   #foreach ( $req in $requirementlist )
-       #set ( $line = $line + 1 ) 
- <Row ss:AutoFitHeight="1" ss:Height="15">
-      <Cell ss:StyleID="s86"><Data ss:Type="Number">$line</Data></Cell>
-      <Cell><Data ss:Type="String">$req.getParentRequirementSet().getName()</Data></Cell>
-##      <Cell ss:StyleID="s86"><Data ss:Type="String"></Data></Cell>
-      <Cell><Data ss:Type="String">$req.ID</Data></Cell>
-##      <Cell><Data ss:Type="String"></Data></Cell>
-      <Cell><Data ss:Type="String">$req.getPropertyAsString("custom.Objektkategorie")</Data></Cell>
-##      <Cell><Data ss:Type="String"></Data></Cell>
-      <Cell><Data ss:Type="String">$req.Name</Data></Cell>
-##      <Cell><Data ss:Type="String"></Data></Cell>
-      <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${req.Description})${text}#end</Font></ss:Data></Cell>
-##          <ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${anfSatz.Description})${text}#end</Font></ss:Data>
-##      <Cell><Data ss:Type="String"></Data></Cell>
-    </Row>
-    #end
-#end ## macro writeRequirementRecord ( $requirementlist )
-    
     
 #macro( traverse1 $requirementSet $pathName )
     #if( $requirementSet.hasRequirementChildren() )
@@ -181,7 +34,7 @@
             #traverse1( $subSet "$pathName/$requirementSet.Name" )
         #end
     #end
-#end ## macro traverse1
+#end ## end of macro traverse1
 
 
 #macro( writeRequirementRecord $req $pathNameOfRequirement )
@@ -195,7 +48,7 @@
 <Cell><Data ss:Type="String">$req.Name</Data></Cell>
 <Cell><ss:Data ss:Type="String" xmlns="http://www.w3.org/TR/REC-html40"><Font>#foreach ( $text in ${req.Description})${text}#end</Font></ss:Data></Cell>
 </Row>
-#end ## macro writeRequirementRecord ( $requirement $pathNameOfRequirement )
+#end ## end of macro writeRequirementRecord ( $requirement $pathNameOfRequirement )
     
     
 
@@ -210,7 +63,7 @@
             #traverse2( $subSet "$pathName/$requirementSet.Name" )
         #end
     #end
-#end ## macro traverse2
+#end ## end of macro traverse2
 
 #macro( writeDependencyRecord $srcRequirement )
     #set( $listOfDestinationRequirements = $srcRequirement.getReferredRequirements() )
@@ -228,7 +81,7 @@
         <Cell><Data ss:Type="String">$destinationRequirement.Name</Data><NamedCell ss:Name="_FilterDatabase"/></Cell>
        </Row>
     #end
-#end
+#end ## end of macro writeDependencyRecord ( $srcRequirement )
 
 
 ##...das eigentliche XML-Dokument
